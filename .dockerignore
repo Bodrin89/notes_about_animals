@@ -1,0 +1,7 @@
+
+*
+!config
+!apps
+!entrypoint.sh
+!poetry.lock
+!pyproject.toml
