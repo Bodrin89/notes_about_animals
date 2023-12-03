@@ -17,6 +17,7 @@ aiofiles = "^23.2.1"
 pillow = "^10.1.0"
 celery = {extras = ["redis"], version = "^5.3.6"}
 django-redis = "^5.4.0"
+drf-spectacular = "^0.26.5"
 
 
 [build-system]

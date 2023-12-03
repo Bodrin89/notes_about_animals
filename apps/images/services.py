@@ -2,10 +2,12 @@ import os
 import aiofiles
 
 import httpx
+from django.http import JsonResponse
 from dotenv import load_dotenv
 import asyncio
 
 from apps.images.models import Images
+from config.settings import LOGGER
 
 load_dotenv()
 
@@ -22,7 +24,8 @@ async def get_url_image(search_foto: str, page: int):
         res = await client.get(url=url, params=params, headers=headers)
         if res.status_code == 200:
             response = res.json()
-            return response.get('results')[0].get('urls').get('small')
+            if response.get('results'):
+                return response.get('results')[0].get('urls').get('small')
 
 
 async def download_images(user_id: int, url: str, query: str):
