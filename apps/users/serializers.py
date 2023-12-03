@@ -16,7 +16,7 @@ class CreateUserSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = User
-        fields = ('id', 'username', 'first_name', 'last_name', 'email', 'password', 'password_repeat')
+        fields = ('id', 'username', 'email', 'password', 'password_repeat')
 
     def validate(self, attrs):
         """Проверка введенного повторно пароля на валидность"""
@@ -42,8 +42,8 @@ class LoginSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = User
-        fields = ('id', 'username', 'first_name', 'last_name', 'email', 'password')
-        read_only_fields = ('id', 'first_name', 'last_name', 'email')
+        fields = ('id', 'username', 'email', 'password')
+        read_only_fields = ('id', 'email')
 
     def create(self, validated_data: dict) -> User:
         """Аутентификация пользователя"""
