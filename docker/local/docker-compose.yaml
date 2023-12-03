@@ -30,6 +30,8 @@ services:
     depends_on:
       db:
         condition: service_healthy
+      redis_test_work:
+        condition: service_started
     env_file:
       - ../../.env
     ports:
@@ -47,9 +49,6 @@ services:
     restart: always
     env_file:
       - ../../.env
-#    environment:
-#      REDIS_HOST: ${REDIS_HOST}
-#      REDIS_PASSWORD: ${REDIS_PASSWORD}
     ports:
       - 63799:6379
 

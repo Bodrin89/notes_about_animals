@@ -1,5 +1,7 @@
 import factory.django
 
+from apps.blogs.models import Blog
+from apps.images.models import Images
 from apps.users.models import User
 
 
@@ -11,14 +13,34 @@ class UserFactory(factory.django.DjangoModelFactory):
     email = factory.Faker('email')
     password = factory.Faker('password')
 
-#
-# class UserNotOwnerFactory(factory.django.DjangoModelFactory):
-#     class Meta:
-#         model = User
-#
-#     username = factory.Faker('user_name')
-#     password = factory.Faker('password')
-#     bot_token = factory.Faker('password')
+
+class ImagesFactory(factory.django.DjangoModelFactory):
+    class Meta:
+        model = Images
+
+    user = factory.SubFactory(UserFactory)
+    title = 'текст блога'
+    url = factory.Faker('url')
+
+
+class BlogFactory(factory.django.DjangoModelFactory):
+    class Meta:
+        model = Blog
+
+    user = factory.SubFactory(UserFactory)
+    title = "Блог про собак"
+    text = "ТексT про собак"
+    image = factory.SubFactory(ImagesFactory)
+    is_active = True
+
+
+class UserNotOwnerFactory(factory.django.DjangoModelFactory):
+    class Meta:
+        model = User
+
+    username = factory.Faker('user_name')
+    email = factory.Faker('email')
+    password = factory.Faker('password')
 #
 #
 # class MessageFactory(factory.django.DjangoModelFactory):

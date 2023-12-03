@@ -1,3 +1,4 @@
+from time import sleep
 
 from django.core.cache import cache
 from rest_framework import generics
@@ -12,7 +13,8 @@ from apps.blogs.serializers import GetBlogSerializer, CreateBlogSerializer, Upda
 class GetBlogView(generics.RetrieveAPIView):
     """Получить блог по id"""
     serializer_class = GetBlogSerializer
-    queryset = Blog.objects.filter(is_active=True)
+    # queryset = Blog.objects.filter(is_active=True)
+    queryset = Blog.objects.all()
 
 
 class ListBlogView(generics.ListAPIView):
