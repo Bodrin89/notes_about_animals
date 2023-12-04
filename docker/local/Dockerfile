@@ -9,4 +9,3 @@ COPY poetry.lock pyproject.toml /code/
 RUN poetry config virtualenvs.create false && poetry install --no-root --no-interaction --no-ansi
 COPY ../../ .
 
-ENTRYPOINT ["bash", "entrypoint.sh"]

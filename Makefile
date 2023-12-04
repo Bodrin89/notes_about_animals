@@ -1,16 +1,18 @@
 docker-compose:
-	docker-compose --project-name reactive_phone -f ./docker/local/docker-compose.yaml --env-file .env up
-	--build -d
+	docker-compose --project-name reactive_phone -f ./docker/local/docker-compose.yaml --env-file .env up --build -d
 
-makemigrations:
-	python3 manage.py makemigrations
+install-tools:
+	pip install poetry && poetry config virtualenvs.create false && poetry install --no-root --no-interaction
+
+start-project:
+	python3 manage.py runserver 8000
+
 
 migrate:
-	python3 manage.py migrate
+	python3 manage.py makemigrations && python3 manage.py migrate
 
-celery-worker:
-	celery -A config worker -l info
-celery-beat:
-	celery -A config beat -l info
-start-test:
+run-celery:
+	celery -A config worker --detach && celery -A config beat --detach
+
+run-test:
 	pytest

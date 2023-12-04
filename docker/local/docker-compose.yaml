@@ -22,26 +22,6 @@ services:
     networks:
       - test_work
 
-  api:
-    container_name: test_work_api
-    build:
-      dockerfile: docker/local/Dockerfile
-      context: ../../
-    depends_on:
-      db:
-        condition: service_healthy
-      redis_test_work:
-        condition: service_started
-    env_file:
-      - ../../.env
-    ports:
-      - 8081:8081
-    volumes:
-      - ../../:/code
-    networks:
-      - test_work
-
-
   redis_test_work:
     container_name: redis_test_work
     image: redis
