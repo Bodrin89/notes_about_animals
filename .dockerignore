@@ -3,5 +3,6 @@
 !config
 !apps
 !entrypoint.sh
+!manage.py
 !poetry.lock
 !pyproject.toml
