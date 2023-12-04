@@ -250,6 +250,6 @@ cython_debug/
 
 #migrations
 **/migrations/**
-!**/migrations/__init__.py!/celerybeat-schedule.db
+!**/migrations/__init__.py
 
 celerybeat-schedule.db
