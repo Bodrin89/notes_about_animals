@@ -1,5 +1,4 @@
 docker-compose:
-	#docker-compose -f ./docker/local/docker-compose.yaml --env-file .env up --build -d
 	docker-compose --project-name reactive_phone -f ./docker/local/docker-compose.yaml --env-file .env up
 	--build -d
 
@@ -8,3 +7,10 @@ makemigrations:
 
 migrate:
 	python3 manage.py migrate
+
+celery-worker:
+	celery -A config worker -l info
+celery-beat:
+	celery -A config beat -l info
+start-test:
+	pytest
